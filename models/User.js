@@ -1,6 +1,4 @@
 const { Schema, model } = require("mongoose");
-// const thoughtSchema = require("./Thought");
-// const reactionSchema = require("./Thought");
 
 // Schema to create Student model
 const userSchema = new Schema(
@@ -9,30 +7,37 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      // trimmed ****?
+      trim: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
+      // check validate email for mongoose **
+      // validate: {
+      //   isEmail: true,
+      // },
     },
     // array of _id values referencing Thought model
-    thoughts: [thoughtSchema],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
     // friends: array of _id values self-referencing user model
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Friend",
+        ref: "User",
       },
     ],
   },
   {
     toJSON: {
-      getters: true,
+      virtuals: true,
     },
+    id: false,
   }
 );
 

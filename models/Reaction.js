@@ -1,8 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types } = require("mongoose");
 // const thoughtSchema = require("./Thought");
-const reactionSchema = require("./Reaction");
 
-// Schema to create Student model
+// Schema to create Reaction model
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -31,9 +30,8 @@ const reactionSchema = new Schema(
     toJSON: {
       getters: true,
     },
+    id: false,
   }
 );
 
-const Reaction = model("reaction", reactionSchema);
-
-module.exports = Reaction;
+module.exports = reactionSchema;

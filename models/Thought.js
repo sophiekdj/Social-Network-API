@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 // const thoughtSchema = require("./Thought");
 const reactionSchema = require("./Reaction");
 
-// Schema to create Student model
+// Schema to create Thought model
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -26,6 +26,7 @@ const thoughtSchema = new Schema(
     toJSON: {
       getters: true,
     },
+    id: false,
   }
 );
 
