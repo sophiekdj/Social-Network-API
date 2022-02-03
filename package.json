@@ -1,7 +1,7 @@
 {
   "name": "social",
   "version": "1.0.1",
-  "description": "Mongoose back-end project - Develop",
+  "description": "Mongoose social network api project",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
