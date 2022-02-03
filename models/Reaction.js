@@ -13,7 +13,6 @@ const reactionSchema = new Schema(
       required: true,
       maxlength: 280,
       minlength: 1,
-      default: "does it need default???****",
     },
     // user that CREATED THIS REACTION *****
     username: {

@@ -18,7 +18,10 @@ const thoughtSchema = new Schema(
       default: Date.now,
     },
     // user that CREATED THIS THOUGHT *****
-    username: {},
+    username: {
+      type: String,
+      required: true,
+    },
     // array of nested documents created with the reactionSchema
     reactions: [reactionSchema],
   },
