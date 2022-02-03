@@ -16,7 +16,6 @@ module.exports = {
           ? res.status(404).json({ message: "No user with that ID" })
           : res.json({
               user,
-              friends: await friends(req.params.userId),
             })
       )
       .catch((err) => {
@@ -68,7 +67,7 @@ module.exports = {
     User.findOneAndUpdate(
       { _id: req.params.userId },
       // this section is throwing error
-      { $addToSet: { friends: { friendId: req.params.friendId } } },
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
