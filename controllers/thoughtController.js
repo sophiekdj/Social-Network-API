@@ -29,8 +29,27 @@ module.exports = {
   // create a new thought - push thought id to creators user id, thoughts array field *****
   createThought(req, res) {
     Thought.create(req.body)
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => res.status(500).json(err));
+      .then((thought) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $push: { thoughts: thought._id } },
+          { new: true }
+        );
+      })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).json({
+            message:
+              "Thought has been created but no user with this ID exists.",
+          });
+        }
+
+        res.json({ message: "Thought has been created!" });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 
   // update thought by its id
